@@ -1,6 +1,6 @@
 package com.revature.models;
 
-import com.revature.daos.ticket_dao;
+//import com.revature.daos.ticket_dao;
 
 public class Manager {
 

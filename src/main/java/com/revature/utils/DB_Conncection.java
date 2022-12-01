@@ -24,10 +24,13 @@ public class DB_Conncection {
                 Class.forName("org.postgresql.Driver"); //find this in dependencies i believe
             }
             catch(ClassNotFoundException e){ //if it does not exist then we will just return null and print the stack trace of what occurred.
+                System.out.println("=====================STACK TRACE=======================");
                 e.printStackTrace();
+                System.out.println("=====================STACK TRACE ^^^^^^^^^^=================");
                 return null;
             }
-            String url = "jdbc:postgresql://localhost:5433/postgres"; //might want to change
+
+            String url = "jdbc:postgresql://localhost:5433/Revature_Project_1"; //might want to change
             String username = "postgres"; //Raw credentials like this are not secure
             String password = "password"; //If accessing a remote DB, preferable to use env variables or config files for credentials to obscure them
         
@@ -36,8 +39,14 @@ public class DB_Conncection {
         }
 
     }
-    public static void main(String[] args){
-        
-    }
+    public static void main(String[] args) {
+        		try {
+        			getConnection();
+        			System.out.println("Connection successful");
+        		} catch (SQLException e) {
+        			e.printStackTrace();
+                    System.out.println("WTF");
+        		}
+        	}
 
 }
