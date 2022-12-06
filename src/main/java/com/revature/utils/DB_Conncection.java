@@ -30,7 +30,7 @@ public class DB_Conncection {
                 return null;
             }
 
-            String url = "jdbc:postgresql://localhost:5433/Revature_Project_1"; //might want to change
+            String url = "jdbc:postgresql://localhost:5433/rev_project_1"; //might want to change
             String username = "postgres"; //Raw credentials like this are not secure
             String password = "password"; //If accessing a remote DB, preferable to use env variables or config files for credentials to obscure them
         

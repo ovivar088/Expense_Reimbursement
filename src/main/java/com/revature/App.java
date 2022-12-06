@@ -2,17 +2,20 @@ package com.revature;
 
 import com.revature.controllers.Employee_Controller;
 //import com.revature.models.Employee;
+import com.revature.controllers.Login_Controller;
 
 import io.javalin.Javalin;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class App {
     
     private static Javalin app;
+    private static Logger log = LoggerFactory.getLogger(App.class);
 
     public static void main(String[] args){
-
         app = Javalin.create(); //Configures how javalin will run
-
         // /hello
         app.get("hello", (ctx) -> {
 
@@ -34,7 +37,8 @@ public class App {
         });
 
 
-        configure(new Employee_Controller());
+        configure(new Employee_Controller(),new Login_Controller());
+        log.info("Configuration Completed.");
         app.start(8081);
         
     }
@@ -46,8 +50,9 @@ public class App {
     }
     */
     
-    public static void configure(Employee_Controller controller){
+    public static void configure(Employee_Controller controller, Login_Controller login){
         controller.addRoutes(app); //addRoutes is a function of Employee_Controller
+        login.addRoutes(app);
     }
 
 

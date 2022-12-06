@@ -2,6 +2,9 @@ package com.revature.daos;
 //Models Connection to DB (my stuff)
 import com.revature.models.Employee;
 import com.revature.utils.DB_Conncection;
+
+import jakarta.transaction.Transaction;
+
 //SQL Dependencies ---- JDBC Imports
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,6 +24,7 @@ public class employee_dao {
             //If a connection is Established get All Employees from DB
             String sql = "SELECT * FROM Employees;"; //Our table will be Employees
 
+
             Statement statement = connection.createStatement(); //Telling java we are giving it an SQL statement, not no regular statement
 
             ResultSet Query_Result = statement.executeQuery(sql); //The sequel query will be returned here
@@ -36,6 +40,7 @@ public class employee_dao {
                 employee.setEmail(Query_Result.getString("Email"));;
                 employee.setUsername(Query_Result.getString("Username"));
                 employee.setPassword(Query_Result.getString("Password"));
+                employee.setIsManager(Query_Result.getBoolean("isManager"));
 
                 Employees.add(employee); //Add the employee to the ArrayList
             }
@@ -54,24 +59,27 @@ public class employee_dao {
         //Assure a connection is established...
         try(Connection connection = DB_Conncection.getConnection()){
 
-            String sql = "INSERT INTO Employees (Employee_ID, First_Name, Last_Name, Email, Username, Password) VALUES(?,?,?,?,?,?);"; //QUESTION 4 TIM
+            String sql = "INSERT INTO Employees (Employee_ID, First_Name, Last_Name, Email, Username, Password, isManager) VALUES(?,?,?,?,?,?,?);"; //QUESTION 4 TIM
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
-            int index = 0;
+            int index = 0; //Q4T <-- FOR SURE RIGHT HERE
             statement.setInt(++index, new_emp.getEmployee_id()); //this should be an integer no because it is an ID,  QUESTION 4 TIM
             statement.setString(++index, new_emp.getFirst_name());
             statement.setString(++index, new_emp.getLast_name());
             statement.setString(++index, new_emp.getEmail());
             statement.setString(++index, new_emp.getUsername());
             statement.setString(++index, new_emp.getPassword());
+            statement.setBoolean(++index, new_emp.getIsManager());
 
             statement.execute(); 
             return true;
 
         }
         catch(SQLException e){
+            System.out.println("=========ERROR ADDING EMPLOYEE TO DB===========");
             e.printStackTrace();
+            System.out.println("===============STACK TRACE ^^^^================");
             return false;
         }
     }
@@ -85,7 +93,7 @@ public class employee_dao {
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
-            statement.setInt(1, ID); //What is the 1??? is it a row number?
+            statement.setInt(0, ID); //What is the 1??? is it a row number?
 
             ResultSet Query_Result = statement.executeQuery();
 
@@ -99,15 +107,17 @@ public class employee_dao {
                 employee.setEmail(Query_Result.getString("Email"));;
                 employee.setUsername(Query_Result.getString("Username"));
                 employee.setPassword(Query_Result.getString("Password")); //In this case
+                employee.setIsManager(Query_Result.getBoolean("isManager"));
             }
             return employee;
         }
         catch(SQLException e){
+            System.out.println("=============Error Getting Employee using Employee_ID through DB==================");
             e.printStackTrace();
+            System.out.println("================STACK TRACE ^^^====================");
             return null;
         }
     }
-
 
     //DELETE EMPLOYEE
 
@@ -135,12 +145,6 @@ public class employee_dao {
         employee_list.add(new_emp);
     }
     */
-
-    
-
-
-
-
 
 
 

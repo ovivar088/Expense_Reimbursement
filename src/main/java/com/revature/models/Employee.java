@@ -10,14 +10,16 @@ public class Employee {
     public String email;
     public String username;
     public String password;
+    public boolean ismanager;
     //int emplyee_id; //also doable but probablly not necessary
-    public Employee(int employee_id, String first_name, String last_name, String email, String username, String password) {
+    public Employee(int employee_id, String first_name, String last_name, String email, String username, String password, boolean ismanager) {
         this.employee_id = employee_id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
         this.username = username;
         this.password = password;
+        this.ismanager = ismanager;
     }
     public Employee(){
         super();
@@ -64,9 +66,16 @@ public class Employee {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    public boolean getIsManager() {
+        return ismanager;
+    }
+    public void setIsManager(boolean ismanager) {
+        this.ismanager = ismanager;
+    }
+    
 
     //Method to create a new ticket
+    /* 
     public Ticket create_ticket(float amount, String memo){
         //Only input the amount and the memo, the rest of the fields will be passed by the 
 
@@ -75,7 +84,7 @@ public class Employee {
         //This new ticket needs to not only be 
         return(new_ticket);
     }
-
+    */
 
 
 
