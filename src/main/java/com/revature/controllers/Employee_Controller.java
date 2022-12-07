@@ -74,7 +74,8 @@ public class Employee_Controller {
     };
 
     Handler getEmployeebyUsername = (ctx) -> {
-        String username = ctx.pathParam("Employee_ID");  
+        //String username = ctx.pathParam("Employee_ID");  
+        String username = ctx.pathParam("username");
         /*
         int ID;
         try{

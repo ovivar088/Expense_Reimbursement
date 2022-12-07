@@ -3,6 +3,7 @@ package com.revature;
 import com.revature.controllers.Employee_Controller;
 //import com.revature.models.Employee;
 import com.revature.controllers.Login_Controller;
+import com.revature.controllers.Ticket_Controller;
 
 import io.javalin.Javalin;
 
@@ -37,7 +38,7 @@ public class App {
         });
 
 
-        configure(new Employee_Controller(),new Login_Controller());
+        configure(new Employee_Controller(),new Login_Controller(), new Ticket_Controller());
         //log.info("Configuration Completed.");
         app.start(8081);
         
@@ -50,9 +51,10 @@ public class App {
     }
     */
     
-    public static void configure(Employee_Controller controller, Login_Controller login){
+    public static void configure(Employee_Controller controller, Login_Controller login, Ticket_Controller ticket){
         controller.addRoutes(app); //addRoutes is a function of Employee_Controller
         login.addRoutes(app);
+        ticket.addRoutes(app);
     }
 
 

@@ -1,17 +1,17 @@
 package com.revature.models;
 
 public class Ticket {
-    int ticket_ID;
-    int employee_id;
-    String first_name;
-    String last_name;
-    String memo;
-    float amount; 
-    String status;
+    public int ticket_ID;
+    public String username;
+    public String first_name;
+    public String last_name;
+    public String memo;
+    public float amount; 
+    public String status;
     //Declare the fields of a ticket
-    public Ticket(int employee_id, String first_name, String last_name, float amount, String memo) {
-        this.ticket_ID = ticket_ID + 1; //REVIEW Q4T
-        this.employee_id = employee_id;
+    public Ticket(int ticket_ID, String username, String first_name, String last_name, float amount, String memo) {
+        this.ticket_ID = ticket_ID; //REVIEW Q4T
+        this.username = username;
         this.first_name = first_name;
         this.last_name = last_name;
         this.memo = memo;
@@ -34,14 +34,15 @@ public class Ticket {
     public void setTicket_ID(int ticket_ID) {
         this.ticket_ID = ticket_ID;
     }
-
-    public int getEmployee_id() {
-        return employee_id;
+    
+    public String getusername() {
+        return username;
     }
 
-    public void setEmployee_id(int employee_id) {
-        this.employee_id = employee_id;
+    public void setUsername(String username) {
+        this.username = username;
     }
+    
 
     public String getFirst_name() {
         return first_name;
