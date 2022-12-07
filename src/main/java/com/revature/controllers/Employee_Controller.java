@@ -44,13 +44,33 @@ public class Employee_Controller {
 
     Handler addEmployee = (ctx) -> {
         Employee emp = ctx.bodyAsClass(Employee.class); //Q4 TIMMMMM
-        //I AM PARSING BODY AS CLASS
-        if(employee_service.newEmployee(emp)){ //if add employee is successful it will return true.
-            ctx.status(201);
+        
+
+        //I need to ensure that the username being used does not already exist, and the email!!
+        Employee_Services register_check = new Employee_Services();
+
+        String user = emp.username;
+        String email = emp.email;
+
+        //Now we want to see if user already exists
+        boolean exists = register_check.user_exists(user, email);
+
+        if(!exists){
+            System.out.println("=========User does not exist so we will attempt to make a new one========");
+            if(employee_service.newEmployee(emp)){ //if add employee is successful it will return true.
+                System.out.println("================USER MADE=============");
+                ctx.status(201);
+            }
+            else{
+                ctx.status(400);
+            }
         }
         else{
+            System.out.println("=============SEEMS USER EXISTS ===================");
             ctx.status(400);
         }
+        
+        
     };
 
     Handler getEmployeebyUsername = (ctx) -> {

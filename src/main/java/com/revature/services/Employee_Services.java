@@ -29,6 +29,9 @@ public class Employee_Services {
         return EMP_DAO.valid_credentials(username, password);
     }
 
+    public boolean user_exists(String username, String email){
+        return EMP_DAO.username_exists(username, email);
+    }
     
     
 }

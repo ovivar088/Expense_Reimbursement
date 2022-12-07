@@ -183,7 +183,48 @@ public class employee_dao {
         }
         return false;
     }
+
+    public boolean username_exists(String username, String email){
+        try(Connection connection = DB_Conncection.getConnection()){
+
+            String sql = "SELECT username FROM employees WHERE username = " + "'"+username+"'" + "or email = " + "'"+email+"';";
+            System.out.println("=====================SQL STATEMENT SEE IF USER EXISTS==============================");
+            System.out.println(sql);
+
+            Statement statement = connection.createStatement();
+
+            ResultSet Query_Result = statement.executeQuery(sql);
+
+            if(Query_Result.next()){
+                System.out.println("-----------------------QUERY NEXT-----------------------");
+                String user = Query_Result.getString("username");
+                System.out.println("-----------------------Username = " + user + "-----------------------");
+                String email_account = Query_Result.getString("email");
+                if(user != null || email != null){
+                    System.out.println("==============USER ALREADY EXISTS======================");
+                    if(user != null){
+                        System.out.println("==============USERNAME ALREADY EXISTS======================");
+                    }
+                    if(email != null){
+                        System.out.println("==============EMAIL ALREADY EXISTS======================");
+                    }
+                    return true;
+                }
+                
+            }
+        }
+        catch(SQLException e){
+
+            System.out.println("=============Username does not exists==================");
+            e.printStackTrace();
+            System.out.println("================STACK TRACE ^^^====================");
+        }
+        return false;
+    }
 }
+
+
+
 
     //DELETE EMPLOYEE
 
