@@ -3,8 +3,10 @@ package com.revature.controllers;
 import com.revature.services.Ticket_Services;
 import com.revature.models.Ticket;
 
-import io.javalin.Javalin;
+//import io.javalin.Javalin;
 import io.javalin.http.Handler;
+//import io.javalin.http.HttpStatus;
+//import jakarta.servlet.http.HttpSession;
 
 public class Ticket_Controller {
     
@@ -13,6 +15,9 @@ public class Ticket_Controller {
     //Here is also where we will manage all the Handlers, very scary terry.
 
     Handler getAllTickets = (ctx) -> {
+
+        //HttpSession session = ctx.req().getSession(false);
+
         ctx.json(ticket_service.getallTickets()); //Returns in json format an array list
         ctx.status(200);
     };

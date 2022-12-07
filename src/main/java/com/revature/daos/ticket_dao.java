@@ -1,5 +1,4 @@
 package com.revature.daos;
-import com.fasterxml.jackson.databind.ext.SqlBlobSerializer;
 //Models and DB connection
 import com.revature.models.Ticket;
 import com.revature.utils.DB_Conncection; //WELL THIS IS EMBARASSING

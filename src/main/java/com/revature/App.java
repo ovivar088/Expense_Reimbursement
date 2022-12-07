@@ -6,13 +6,13 @@ import com.revature.controllers.Login_Controller;
 
 import io.javalin.Javalin;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 public class App {
     
     private static Javalin app;
-    private static Logger log = LoggerFactory.getLogger(App.class);
+    //private static Logger log = LoggerFactory.getLogger(App.class);
 
     public static void main(String[] args){
         app = Javalin.create(); //Configures how javalin will run
@@ -38,7 +38,7 @@ public class App {
 
 
         configure(new Employee_Controller(),new Login_Controller());
-        log.info("Configuration Completed.");
+        //log.info("Configuration Completed.");
         app.start(8081);
         
     }

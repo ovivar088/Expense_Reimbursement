@@ -3,7 +3,7 @@ package com.revature.daos;
 import com.revature.models.Employee;
 import com.revature.utils.DB_Conncection;
 
-import jakarta.transaction.Transaction;
+//import jakarta.transaction.Transaction;
 
 //SQL Dependencies ---- JDBC Imports
 import java.sql.Connection;
@@ -85,15 +85,15 @@ public class employee_dao {
     }
 
     //GET EMPLOYEE BY NAME
-    public Employee getEmployeeByID(int ID){ //FIX THIS HERE MY BOI
+    public Employee getEmployeeByUsername(String username){ //FIX THIS HERE MY BOI
 
         try (Connection connection = DB_Conncection.getConnection()){
 
-            String sql = "SELECT * FROM Employees WHERE Employee_ID = ?;";
+            String sql = "SELECT * FROM Employees WHERE Username = ?;";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
-            statement.setInt(0, ID); //What is the 1??? is it a row number?
+            statement.setString(0, username); //What is the 1??? is it a row number?
 
             ResultSet Query_Result = statement.executeQuery();
 
@@ -117,6 +117,36 @@ public class employee_dao {
             System.out.println("================STACK TRACE ^^^====================");
             return null;
         }
+    }
+
+    public boolean getManagerStatus(String username){
+
+        try(Connection connection = DB_Conncection.getConnection()){
+
+            String sql = "SELECT ismanager FROM employees WHERE username = " + "'"+username+"'" + ";";
+            System.out.println("=====================SQL STATEMENT TO GET MANAGER STATUS==============================");
+            System.out.println(sql);
+
+            Statement statement = connection.createStatement();
+
+            ResultSet Query_Result = statement.executeQuery(sql);
+
+            while(Query_Result.next()){
+                System.out.println("-----------------------QUERY NEXT-----------------------");
+                boolean isManager = Query_Result.getBoolean("ismanager");
+                System.out.println("-----------------------isManager = " + isManager + "-----------------------");
+                return isManager;
+            }
+
+
+        }
+        catch(SQLException e){
+
+            System.out.println("=============Error Getting Employee Status using Employee_ID through DB==================");
+            e.printStackTrace();
+            System.out.println("================STACK TRACE ^^^====================");
+        }
+        return false;
     }
 
     //DELETE EMPLOYEE

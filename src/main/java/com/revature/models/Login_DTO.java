@@ -1,5 +1,6 @@
 package com.revature.models;
 
+
 public class Login_DTO {
 	
 	public String username;
@@ -14,8 +15,6 @@ public class Login_DTO {
 	public Login_DTO() {
 		super();
 	}
-	
-	
 
 }
 

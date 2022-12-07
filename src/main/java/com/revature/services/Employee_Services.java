@@ -13,12 +13,16 @@ public class Employee_Services {
         return EMP_DAO.getAllEmployees();
     }
 
-    public Employee getEmployee(int ID){
-        return EMP_DAO.getEmployeeByID(ID);
+    public Employee getEmployeebyUsername(String username){
+        return EMP_DAO.getEmployeeByUsername(username);
     }
 
     public boolean newEmployee(Employee employee){
         return EMP_DAO.add_Employee(employee);
+    }
+    
+    public boolean getManagerStatus(String username){
+        return EMP_DAO.getManagerStatus(username);
     }
 
     
