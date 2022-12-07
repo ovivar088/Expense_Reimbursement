@@ -25,6 +25,10 @@ public class Employee_Services {
         return EMP_DAO.getManagerStatus(username);
     }
 
+    public boolean validate_credentials(String username, String password){
+        return EMP_DAO.valid_credentials(username, password);
+    }
+
     
     
 }

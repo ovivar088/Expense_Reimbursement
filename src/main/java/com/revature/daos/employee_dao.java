@@ -149,6 +149,42 @@ public class employee_dao {
         return false;
     }
 
+    public boolean valid_credentials(String username, String password){
+
+        try(Connection connection = DB_Conncection.getConnection()){
+
+            String sql = "SELECT username, password FROM employees WHERE username = " + "'"+username+"'" + "and password = " + "'"+password+"'" + ";";
+            System.out.println("=====================SQL STATEMENT SEE IF USER EXISTS==============================");
+            System.out.println(sql);
+
+            Statement statement = connection.createStatement();
+
+            ResultSet Query_Result = statement.executeQuery(sql);
+
+            if(Query_Result.next()){
+                System.out.println("-----------------------QUERY NEXT-----------------------");
+                String user = Query_Result.getString("username");
+                System.out.println("-----------------------Username = " + user + "-----------------------");
+                String pass = Query_Result.getString("password");
+                System.out.println("-----------------------Password = " + pass + "-----------------------");
+
+                if(user != null && pass !=null){
+                    System.out.println("==============Credentails Validated======================");
+                    return true;
+                }
+                
+            }
+        }
+        catch(SQLException e){
+
+            System.out.println("=============Error Validating Credentials==================");
+            e.printStackTrace();
+            System.out.println("================STACK TRACE ^^^====================");
+        }
+        return false;
+    }
+}
+
     //DELETE EMPLOYEE
 
     //UPDATE EMPLOYEE
@@ -175,7 +211,3 @@ public class employee_dao {
         employee_list.add(new_emp);
     }
     */
-
-
-
-}
