@@ -3,8 +3,8 @@
   <groupId>com.revature</groupId>
   <artifactId>project1</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Project 1</name>
-  <description>Employee Reimbursment System</description>
+  <name>Employee Reimbursment System</name>
+  <description>Java/JDBC/PostgreSQL/Docker</description>
   
   <properties>
 		<maven.compiler.source>11</maven.compiler.source>
